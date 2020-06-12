@@ -462,7 +462,7 @@ elseif tf_word==0  %%%%%This will stop it from trying to calculate it if there i
             title({strcat(cell_all_dpa{temp_dpa_idx,1},' DPA: ',esc_labels),strcat('Covereage Percentage'),strcat('Reliability 95:',num2str(round(array_coverage_calc(logic_idx,1),5)),'%'),strcat('Reliability 50:',num2str(round(array_coverage_calc(logic_idx,2),5)),'%')},'Interpreter', 'none')
             xlabel('Longitude')
             ylabel('Latitude')
-            plot_google_map('maptype','terrain','APIKey','AIzaSyCgnWnM3NMYbWe7N4svoOXE7B2jwIv28F8') %%%Google's API key made by nick.matlab.error@gmail.com
+            plot_google_map('maptype','terrain','APIKey','[GOOGLE_APIKEY]') %%%Google's API key made by nick.matlab.error@gmail.com
             grid on;
             filename3=strcat(num2str(step_size),'km_',cell_all_dpa{temp_dpa_idx,1},'_logic',num2str(logic_idx),'_',esc_labels,'.png');
             saveas(gcf,char(filename3))
@@ -781,8 +781,8 @@ elseif tf_word==0  %%%%%This will stop it from trying to calculate it if there i
 
                     xlabel('Longitude')
                     ylabel('Latitude')
-                    %plot_google_map_app(app,'maptype','terrain','APIKey','AIzaSyCgnWnM3NMYbWe7N4svoOXE7B2jwIv28F8') %%%Google's API key made by nick.matlab.error@gmail.com
-                    plot_google_map('maptype','terrain','APIKey','AIzaSyCgnWnM3NMYbWe7N4svoOXE7B2jwIv28F8') %%%Google's API key made by nick.matlab.error@gmail.com
+                    %plot_google_map_app(app,'maptype','terrain','APIKey','GOOGLE_APIKEY') %%%Google's API key made by nick.matlab.error@gmail.com
+                    plot_google_map('maptype','terrain','APIKey','GOOGLE_APIKEY') %%%Google's API key made by nick.matlab.error@gmail.com
                     grid on;
                     
                     FigureIntoWord_app(app,ActXWord,hFig); %insert the figure
