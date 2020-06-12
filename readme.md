@@ -1,5 +1,7 @@
 # ESC-DPA Coverage Analysis
 
+**This code is unofficial and for reference only.**
+
 For the ESC-DPA Coverage Analysis software you will need to download and install Matlab Runtime 2018b (ver 9.5) [FREE]:
 
  * http://ssd.mathworks.com/supportfiles/downloads/R2018b/deployment_files/R2018b/installers/win64/MCR_R2018b_win64_installer.exe
