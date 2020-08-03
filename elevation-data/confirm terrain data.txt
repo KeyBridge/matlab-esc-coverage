@@ -1,4 +1,10 @@
 
+Download the terrain database
+
+See _How to Get and Load GLOBE Data_ or download the complete data file from
+
+https://keybridge-data.s3.amazonaws.com/esc/USGS.zip  (1.8 GB)
+
 After you have downloaded the terrain database, run this Matlab Code as a check.
  
  
