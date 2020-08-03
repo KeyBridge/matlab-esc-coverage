@@ -1,0 +1,177 @@
++------------------------------------------------------------------------------+
+|          Script to download data files for the Global Land One-km            |
+|          Base Elevation Project (GLOBE) database                             |
+|          See http://www.ngdc.noaa.gov/mgg/topo/gltiles.html                  |
++------------------------------------------------------------------------------+
+History:
+ mid-2009 - first use
+ 05/29/11 - cleaned up this readme file
+          - reorganized file location direcotories
+ 08/30/12 - clean up this readme file
+ 04/22/14 - add notes to this readme file
+ 08/04/16 - add download all-at-once link
+          - add info on how to get header and color files
+          - add instructions to use a11g instead of a10
+          - a10 is updated to a11
+ 10/05/16 - reorganize ETL instructions
+
+About:
++------------------------------------------------------------------------------+
+  A 30-arc-second (1-km) gridded, quality-controlled global Digital Elevation Model (DEM).
+
+  The Global Land One-km Base Elevation Project (GLOBE) Task Team was established 
+  by the Committee on Earth Observation Satellites. It was part of Focus I of the
+  International Geosphere-Biosphere Programme - Data and Information System. 
+  For more information, please see A Brief History of GLOBE in the project report. 
+
+08/04/16 - check in to confirm all OK.
++------------------------------------------------------------------------------+
+[NEW] NOAA has added a single link to download all GLOBE data at once.
+  http://www.ngdc.noaa.gov/mgg/topo/DATATILES/elev/all10g.tgz     321 MByte
+Header files are here:
+  http://www.ngdc.noaa.gov/mgg/topo/elev/geovu/hdr/
+Interesting Color files are here:
+  http://www.ngdc.noaa.gov/mgg/topo/elev/esri/clr/
+
+Install into the data dir:
+  typically at /[var|export]/data/elevation/noaa/globe
+
+Download DATA
+  wget http://www.ngdc.noaa.gov/mgg/topo/DATATILES/elev/all10g.tgz
+
+Extract
+  tar -zxvf all10g.tgz
+  rm all10g.tgz
+  mv all10/* .
+  rmdir all10
+
+Download HEADER
+  for letters in a b c d e f g h i j k l m n o p;
+  do
+    wget http://www.ngdc.noaa.gov/mgg/topo/elev/geovu/hdr/${letters}10g.hdr; 
+  done
+
+Download COLOR
+    wget http://www.ngdc.noaa.gov/mgg/topo/elev/esri/clr/a10g.clr; 
+
+Upgrade: The tile a10 data file is updated to a11. The header is unchanged.
+  See http://www.ngdc.noaa.gov/mgg/topo/elev/a11g.readme
+  
+     rm a10g
+     mv a10g.hdr a11g.hdr
+
+
+  
+  
+  
+
+DEPRECATED - United States ONLY
++------------------------------------------------------------------------------+
+| Retrieve (and unzip) a set of GLOBE data files only covering NORTH AMERICA
+|   Run this in the subdirectory 'original_data'
++------------------------------------------------------------------------------+
+  # for letters in a b e f;
+  # do
+  #   wget http://www.ngdc.noaa.gov/mgg/topo/DATATILES/elev/${letters}10g.gz; 
+  #   gunzip ${letters}10g.gz
+  # done
+
+Step 1
++------------------------------------------------------------------------------+
+| Retrieve (and unzip) a COMPLETE set of GLOBE data files 
+|   Run this in the subdirectory 'original_data'
++------------------------------------------------------------------------------+
+  for letters in a b c d e f g h i j k l m n o p;
+  do
+    wget http://www.ngdc.noaa.gov/mgg/topo/DATATILES/elev/${letters}10g.gz; 
+    gunzip ${letters}10g.gz
+  done
+
++------------------------------------------------------------------------------+
+| Convert little-endian (default data) files to big-endian (Java) files
+|   Assumes that downloaded files are the directory 'original_data' 
+|   Places output data files in the directory 'big_endian'
+|   Run this in the top level directory 
++------------------------------------------------------------------------------+
+  for letters in a b c d e f g h i j k l m n o p;
+    do dd if=original_data/${letters}10g of=big_endian/${letters}10g conv=swab; 
+  done
+
+
+Reference Information (globe.dat)
+
++------------------------------------------------------------------------------+
+| Table 3. Tile Definitions
+| http://www.ngdc.noaa.gov/mgg/topo/report/s11/s11C.html
++------------------------------------------------------------------------------+
+
+         Latitude    Longitude      Elevation      Data Grid
+Tile    Min.  Max.   Min.  Max.    Min.*  Max.    Columns Rows 
+
+A10G    50     90   -180    -90      1    6098    10800   4800
+B10G    50     90    -90      0      1    3940    10800   4800
+C10G    50     90      0     90    -30    4010    10800   4800
+D10G    50     90     90    180      1    4588    10800   4800
+E10G     0     50   -180    -90    -84    5443    10800   6000
+F10G     0     50    -90      0    -40    6085    10800   6000
+G10G     0     50      0     90   -407    8752    10800   6000
+H10G     0     50     90    180    -63    7491    10800   6000
+I10G   -50      0   -180    -90      1    2732    10800   6000
+J10G   -50      0    -90      0   -127    6798    10800   6000
+K10G   -50      0      0     90      1    5825    10800   6000
+L10G   -50      0     90    180      1    5179    10800   6000
+M10G   -90    -50   -180    -90      1    4009    10800   4800
+N10G   -90    -50    -90      0      1    4743    10800   4800
+O10G   -90    -50      0     90      1    4039    10800   4800
+P10G   -90    -50     90    180      1    4363    10800   4800
+
+* Note: This "minimum" shows the minimum elevation on land. Every tile contains 
+values of -500 for oceans, with no values between -500 and the minimum value for 
+land noted here. 
+
+file lat1 lat2 lon1 lon2 Description
+a10g   50   90  180  270 Tile A lat(50-90N) lon(180- 90W)
+b10g   50   90  270  360 Tile B lat(50-90N) lon( 90-  0W)
+c10g   50   90    0   90 Tile C lat(50-90N) lon(  0- 90E)
+d10g   50   90   90  180 Tile D lat(50-90N) lon( 90-180E)
+e10g    0   50  180  270 Tile E lat( 0-50N) lon(180- 90W)
+f10g    0   50  270  360 Tile F lat( 0-50N) lon( 90-  0W)
+g10g    0   50    0   90 Tile G lat( 0-50N) lon(  0- 90E)
+h10g    0   50   90  180 Tile H lat( 0-50N) lon( 90-180E)
+i10g  -50    0  180  270 Tile I lat(50S-0 ) lon(180- 90W)
+j10g  -50    0  270  360 Tile J lat(50S-0 ) lon( 90-  0W)
+k10g  -50    0    0   90 Tile K lat(50S-0 ) lon(  0- 90E)
+l10g  -50    0   90  180 Tile L lat(50S-0 ) lon( 90-180E)
+m10g  -90  -50  180  270 Tile M lat(90-50S) lon(180- 90W)
+n10g  -90  -50  270  360 Tile N lat(90-50S) lon( 90-  0W)
+o10g  -90  -50    0   90 Tile O lat(90-50S) lon(  0- 90E)
+p10g  -90  -50   90  180 Tile P lat(90-50S) lon( 90-180E)
+
++------------------------------------------------------------------------------+
+| 11.H. Projection Information
+| http://www.ngdc.noaa.gov/mgg/topo/report/s11/s11H.html
++------------------------------------------------------------------------------+
+
+Listed below is the projection information for each data file in GLOBE.
+
+        Projection       Geographic (latitude/longitude)
+        Datum            WGS84
+        Zunits           Meters above mean sea level
+        Hunits           30 arc-seconds of latitude and longitude
+        Spheroid         WGS84
+        Xshift           0.0000000000
+        Yshift           0.0000000000
+        Cell Referencing Each cell is nominally bound by 30" intervals
+                         of latitude and longitude, beginning with any
+                         whole degree (e.g. 0.0000 degrees)
+        Parameters       NONE other than those above
+
+
+
+DEPRECATED: 10/05/16. Raster lib reads the native format
+  The GLOBE files are distributed as little-endian raw data and not binary compatible with 
+  JAVA file readers by default. The easiest solution is to convert data files to 
+  big-endian data format, instead of implementing a little-endian data reader.
+  Endian conversion is done using the unix 'dd' program.
+  The 'data' directory is big endian. The 'data_raw' directory is little endian.
+

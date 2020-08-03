@@ -1,0 +1,28 @@
+file_title               = Tile A Elevation
+number_of_display_colors = 256
+palettes_file            = GLOBE1.lst
+palette                  = TOPO_LAND_256
+data_type                = image
+data_byte_order          = little_endian
+upper_map_y              = 90.0
+lower_map_y              = 50.0
+left_map_x               = -180.0
+right_map_x              = -90.0
+number_of_rows           = 4800
+number_of_columns        = 10800
+grid_size(x)             = 0.00833333
+grid_size(y)             = 0.00833333
+grid_unit                = degrees
+grid_origin              = upperleft_x
+grid_cell_registration   = upperleft
+map_projection           = lat/lon
+elevation_unit           = Meter
+missing_flag             = -500
+elevation_max            = 8752
+elevation_min            = -432
+comment1 = actual elevation max = 6098
+comment2 = actual elevation min = 1
+
+
+
+                                                                                

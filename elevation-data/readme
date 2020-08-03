@@ -1,0 +1,43 @@
+Global Land One-km Base Elevation Project (GLOBE)
+
+https://www.ngdc.noaa.gov/mgg/topo/gltiles.html
+
+A 30-arc-second (1-km) gridded, quality-controlled global Digital Elevation Model (DEM).
+
+See documentation page 81 for detailed data information.
+
+Time Period: 1940-01-01 to 1999-01-01
+
+Measurement and Evaluation
+Measure Description: GLOBE documentation (KGRD 34) discusses logical consistency implicitly in its quality control & accuracy assessments. Adjacent data files have no gaps between themselves. A few land areas of 30 arc-seconds in size may be missing. Most smaller areas are missing. Bathymetry is not included in GLOBE Version 1.0 (See NGDC’s TerrainBase or ETOPO5 for lower-resolution Bathymetric data. GLOBE Version 2.0 may include bathymetric data.)
+
+Absolute External Positional Accuracy
+      Vertical Positional Accuracy Report
+      Evaluation Description: Vertical accuracy varies by source materials used in GLOBE. Values may range from 10 meters to 250 meters (and in rare cases, to over 500 meters in elevation). In the field (below) vertical position accuracy value, we have arbitrarily assigned the number
+
+Legal Constraints & Use Limitation:
+    Cite as: National Geophysical Data Center, 1999. Global Land One-kilometer Base Elevation (GLOBE) v.1. Hastings, D. and P.K. Dunbar. National Geophysical Data Center, NOAA. doi:10.7289/V52R3PMS [access date].
+
+Data description:
+  Files are provided as 16-bit signed integer data in a simple binary raster. 
+  There are no header or trailer bytes embedded in the image. 
+  The data are stored in row major order (all the data for row 1, followed by all the data for row 2, etc.). 
+  All files have 10800 columns, and either 4800 or 6000 rows
+  The following diagram depicts the organization of the files:
+
+  bytes1/2         . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . bytes21599/21600
+  bytes21601/21602 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . bytes43199/43200
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+  etc.
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .(last byte-1)/(last byte)
+ 
+The data are in little-endian byte order (that is, for IBM-compatible PCs, Digital Equipment VAXes,
+etc.). UNIX workstations using big-endian byte order can swap bytes using the command:
+  dd if=inputfilename of=outputfilename conv=swab
+
+
+
+Globe Header Files:
+  http://www.ngdc.noaa.gov/mgg/topo/DATATILES/elev/geovu/
+
+

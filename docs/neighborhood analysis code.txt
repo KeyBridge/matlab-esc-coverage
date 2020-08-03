@@ -1,0 +1,5 @@
+CatB Neighborhood sims (includes CBSD generation code): https://github.com/nicklasorte/3.5GHz_Code
+(This code uses a .dll for the ITM prop model/terrain handler which is not included. You will have to modify WinnForum_ITMP2P_parchunk_self_contained_GUI.m to call your implementation of ITM.)
+ 
+Just CBSD generation code: https://github.com/NTIA/3.5GHz-CBSD-Generation
+(This code needs the Matlab mapping toolbox to run.)
