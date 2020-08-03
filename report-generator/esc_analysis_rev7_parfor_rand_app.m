@@ -2,13 +2,14 @@ function esc_analysis_rev7_parfor_rand_app(app,step_size,filename1,filename2,fil
 
 top_start_clock=clock;
 % % % 210 dB path loss threshold shall be used
-% % % Radar EIRP (121 dBm/MHz) – ESC detection threshold (-89 dBm/MHz)
+% % % Radar EIRP (121 dBm/MHz) ï¿½ ESC detection threshold (-89 dBm/MHz)
 % % % ITM 50% Confidence and 95% Reliability shall be used to calculate path loss thresholds to locations within 75 km from the shore
 % % % Provides margin for asymmetrical propagation paths between CBSDs, DPA analysis points and ESC locations
 % % % ITM 50% Confidence and 50% Reliability can be used to calculate path loss thresholds for the remainder of the DPA area
 % % % Conditional probability shall not be used
 % % % ESC detection independence can not be assumed - propagation conditions are routinely similar over large distances
-% % % Coverage shall be determined as the superset of all DPA ESCs – as long as any one ESC meets the detection criteria for a given DPA location, the location is covered
+% % % Coverage shall be determined as the superset of all DPA ESCs
+% % %  - as long as any one ESC meets the detection criteria for a given DPA location, the location is covered
 
 %load('us_cont.mat','us_cont')
 reset(RandStream.getGlobalStream,sum(100*clock))  %%%%%%Set the Random Seed to the clock because all compiled apps start with the same random seed.
@@ -19,7 +20,7 @@ min_ant_loss=20;
 
 %%%%%%Radar Parameters
 radar_height=50; %%%%%Meters
-path_loss_threshold=210; %%%dB: Radar EIRP (121 dBm/MHz) – ESC detection threshold (-89 dBm/MHz)
+path_loss_threshold=210; %%%dB: Radar EIRP (121 dBm/MHz) ï¿½ ESC detection threshold (-89 dBm/MHz)
 % % % ITM 50% Confidence and 95% Reliability shall be used to calculate path loss thresholds to locations within 75 km from the shore
 % % % ITM 50% Confidence and 50% Reliability can be used to calculate path loss thresholds for the remainder of the DPA area
 
