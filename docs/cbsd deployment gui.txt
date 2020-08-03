@@ -4,7 +4,6 @@ Matlab runtime (free) needs to be installed.
  
 Feel free to distribute.
  
- 
 Install Matlab 2017b (9.3) Runtime: https://www.mathworks.com/products/compiler/matlab-runtime.html
  
 Download CBSD Deployment App (35MB): https://app.box.com/s/yfgu4lxi3863kat6o3myiy9gmo7rsfz5
